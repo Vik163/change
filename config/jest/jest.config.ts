@@ -6,14 +6,15 @@
 import path from 'path';
 
 export default {
+    // A set of global variables that need to be available in all test environments
     globals: {
         __IS_DEV__: true,
         __API__: '',
         __PROJECT__: 'jest',
     },
-    clearMocks: true,
+    clearMocks: true, // очищаем моки
     testEnvironment: 'jsdom',
-    coveragePathIgnorePatterns: [
+    coveragePathIgnorePatterns: [ // игнорируем node-modules
         '\\\\node_modules\\\\',
     ],
     moduleFileExtensions: [
@@ -27,13 +28,16 @@ export default {
     moduleDirectories: [
         'node_modules',
     ],
-    modulePaths: [
+    modulePaths: [ // для импортов
         '<rootDir>src',
     ],
     testMatch: [
         // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
+        // регулярное выражение по которому находят файлы с тестами
+    // универсальная для мака и винды
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
+    // The root directory that Jest should scan for tests and modules within
     rootDir: '../../',
     setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
     moduleNameMapper: {

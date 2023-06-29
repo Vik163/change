@@ -1,3 +1,93 @@
+// module.exports = {
+//     env: {
+//         browser: true,
+//         es2021: true,
+//         jest: true,
+//     },
+//     extends: [
+//         'plugin:react/recommended',
+//         'airbnb',
+//         'plugin:i18next/recommended',
+//     ],
+//     parser: '@typescript-eslint/parser',
+//     parserOptions: {
+//         ecmaFeatures: {
+//             jsx: true,
+//         },
+//         ecmaVersion: 'latest',
+//         sourceType: 'module',
+//     },
+//     plugins: [
+//         'react',
+//         '@typescript-eslint',
+//         'i18next',
+//         'react-hooks',
+//     ],
+//     rules: {
+//         'react/jsx-indent': [2, 4],
+//         'react/jsx-indent-props': [2, 4],
+//         indent: [2, 4],
+//         'react/jsx-filename-extension': [
+//             2,
+//             { extensions: ['.js', '.jsx', '.tsx'] },
+//         ],
+//         'no-unused-vars': 'off',
+//         '@typescript-eslint/no-unused-vars': [
+//             'error',
+//             { argsIgnorePattern: '^_' },
+//         ],
+//         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks надо ставить 4_1 20 минута
+//         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies надо ставить
+//         'import/no-unresolved': 'off',
+//         'import/prefer-default-export': 'off',
+//         'react/require-default-props': 'off',
+//         'react/react-in-jsx-scope': 'off',
+//         'react/jsx-props-no-spreading': 'warn',
+//         'arrow-body-style': 'off', // убирает return
+//         'react/self-closing-comp': 'off', // сжимает пустой компонент
+//         'react/function-component-definition': 'off', // импорт React
+//         'no-shadow': 'off',
+//         'jsx-a11y/click-events-have-key-events': 'off',
+//         'jsx-a11y/no-static-element-interactions': 'off',
+//         'import/extensions': 'off',
+//         // импорт фалов без расширения
+//         'import/no-extraneous-dependencies': 'warn',
+//         // импорт webpack
+//         'no-underscore-dangle': 'off',
+//         // нижнее подчеркивание
+//         'i18next/no-literal-string': 'off', // переводы только в jsx
+//         // 'i18next/no-literal-string': [
+//         //     'error',
+//         //     {
+//         //         markupOnly: true,
+//         //         ignoreAttribute: ['data-testid', 'to'],
+//         //     },
+//         // ], // переводы только в jsx
+
+//         'max-len': ['error', { ignoreComments: true, code: 140 }], // длина комментариев и кода
+//         'no-param-reassign': 'off', // отключаем запрет на изменение аргументов функции для redux
+//         'no-undef': 'off', // 5_6 7 min
+//         'react/no-array-index-key': 'off',
+//         'linebreak-style': 'off', // LF
+
+//     },
+//     globals: {
+//         __IS_DEV__: true,
+//         __API__: true,
+//         __PROJECT__: true,
+//     },
+//     // переопределяет правила линта
+//     overrides: [
+//         {
+//             files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
+//             rules: {
+//                 'i18next/no-literal-string': 'off',
+//                 'max-len': 'off',
+//             },
+//         },
+//     ],
+// };
+
 module.exports = {
     env: {
         browser: true,

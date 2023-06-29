@@ -9,6 +9,7 @@ import { ErrorBoundary } from './app/providers/ErrorBoundary';
 
 render(
     <BrowserRouter>
+        {/* используется навигация */}
         <StoreProvider>
             <ErrorBoundary>
                 <ThemeProvider>

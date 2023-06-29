@@ -2,7 +2,7 @@ import { BuildOptions } from '../types/config';
 
 export function buildBabelLoader({ isDev }: BuildOptions) {
     return {
-        test: /\.(js|jsx|tsx)$/,
+        test: /\.(js|jsx|tsx)$/, // меняем расширения
         exclude: /node_modules/,
         use: {
             loader: 'babel-loader',
@@ -12,8 +12,8 @@ export function buildBabelLoader({ isDev }: BuildOptions) {
                     [
                         'i18next-extract',
                         {
-                            locales: ['ru', 'en'],
-                            keyAsDefaultValue: true,
+                            locales: ['ru', 'en'], // какие
+                            keyAsDefaultValue: true, // в качестве значения подставляет ключ
                         },
                     ],
                     isDev && require.resolve('react-refresh/babel'),

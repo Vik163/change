@@ -6,6 +6,9 @@ interface UseThemeResult {
     theme: Theme;
 }
 
+// Создаем пользовательский hook
+// Получаем из контекста данные, описываем логику
+// Возвращаем объект и сохраняем тему в localStorage
 export function useTheme(): UseThemeResult {
     const { theme, setTheme } = useContext(ThemeContext);
 

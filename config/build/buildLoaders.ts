@@ -22,6 +22,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         exclude: /node_modules/,
     };
 
+    // Можно добавить обработку шрифтов
     const fileLoader = {
         test: /\.(png|jpe?g|gif|woff2|woff)$/i,
         use: [
@@ -31,10 +32,12 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         ],
     };
 
+    // имеет значение место в массиве сначала babelLoader потом typeScriptLoaders
+    // ПОРЯДОК ВАЖЕН
     return [
+        babelLoader,
         fileLoader,
         svgLoader,
-        babelLoader,
         typescriptLoader,
         cssLoader,
     ];

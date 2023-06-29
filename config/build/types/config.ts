@@ -5,10 +5,11 @@ export interface BuildPaths {
     build: string;
     html: string;
     src: string;
-    locales: string;
+    locales: string; // переводы 9_6
     buildLocales: string;
 }
 
+// переменные окружения
 export interface BuildEnv {
     mode: BuildMode;
     port: number;
@@ -21,5 +22,6 @@ export interface BuildOptions {
     isDev: boolean;
     port: number;
     apiUrl: string;
+        // для тестов
     project: 'storybook' | 'frontend' | 'jest';
 }

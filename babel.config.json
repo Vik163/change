@@ -5,11 +5,10 @@
     [
       "@babel/preset-react",
       {
+        // подставляется react без импортов
         "runtime": "automatic"
       }
     ]
   ],
-  "plugins": [
-    "i18next-extract"
-  ]
+  "plugins": ["i18next-extract"]
 }

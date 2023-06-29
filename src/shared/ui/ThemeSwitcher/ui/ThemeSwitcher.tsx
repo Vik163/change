@@ -10,6 +10,7 @@ interface ThemeSwitcherProps {
 }
 
 export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
+    // используем пользовательский hook useTheme()
     const { theme, toggleTheme } = useTheme();
 
     return (
