@@ -12,19 +12,9 @@ export const initArticlesPage = createAsyncThunk<
     ThunkConfig<string>
     >(
         'articlesPage/initArticlesPage',
-         ( thunkApi) => {
+        (searchParams, thunkApi) => {
             const { getState, dispatch } = thunkApi;
             const inited = getArticlesPageInited(getState());
-
-        if (!inited) { // 9_1 5min
-            dispatch(articlesPageActions.initState());
-
-            dispatch(
-                fetchArticlesList({
-                    page: 1,
-                }),
-            );
-        }
 
             if (!inited) {
                 const orderFromUrl = searchParams.get('order') as SortOrder;
