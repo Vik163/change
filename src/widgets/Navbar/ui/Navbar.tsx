@@ -14,6 +14,7 @@ interface NavbarProps {
     className?: string;
 }
 
+// Получает извне через пропсы className
 export const Navbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = useState(false);

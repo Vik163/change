@@ -7,6 +7,7 @@ import ProfileIcon from 'shared/assets/icons/profile-20-20.svg';
 import ArticleIcon from 'shared/assets/icons/article-20-20.svg';
 import { SidebarItemType } from '../types/sidebar';
 
+// 8_2
 export const getSidebarItems = createSelector(
     getUserAuthData,
     (userData) => {

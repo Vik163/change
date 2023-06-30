@@ -24,6 +24,7 @@ export const Page = memo((props: PageProps) => {
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
+    // 9_2 11min
     const scrollPosition = useSelector(
         (state: StateSchema) => getUIScrollByPath(state, pathname),
     );
@@ -38,6 +39,7 @@ export const Page = memo((props: PageProps) => {
         wrapperRef.current.scrollTop = scrollPosition;
     });
 
+    // 9_2 8min, 14min
     const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
         dispatch(uiActions.setScrollPosition({
             position: e.currentTarget.scrollTop,
