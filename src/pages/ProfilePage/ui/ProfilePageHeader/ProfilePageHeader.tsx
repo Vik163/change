@@ -21,11 +21,13 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
     } = props;
 
     const { t } = useTranslation('profile');
+    const readonly = useSelector(getProfileReadonly);
+    const dispatch = useAppDispatch();
+    // 8_1 32min -------------------
     const authData = useSelector(getUserAuthData);
     const profileData = useSelector(getProfileData);
     const canEdit = authData?.id === profileData?.id;
-    const readonly = useSelector(getProfileReadonly);
-    const dispatch = useAppDispatch();
+    //----------------------------------------
 
     const onEdit = useCallback(() => {
         dispatch(profileActions.setReadonly(false));

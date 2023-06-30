@@ -12,12 +12,13 @@ export interface ArticlesPageSchema extends EntityState<Article> {
     page: number;
     limit: number;
     hasMore: boolean;
-    // filters
+
+    // фильтры 9_3
     view: ArticleView;
     order: SortOrder;
     sort: ArticleSortField;
     search: string;
     type: ArticleType;
 
-    _inited: boolean;
+    _inited: boolean; // 9_1 5min
 }

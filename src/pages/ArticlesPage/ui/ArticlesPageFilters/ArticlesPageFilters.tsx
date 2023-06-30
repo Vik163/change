@@ -22,6 +22,7 @@ import {
 } from '../../model/selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../model/slices/articlesPageSlice';
 
+// 9_3
 interface ArticlesPageFiltersProps {
     className?: string;
 }
@@ -40,6 +41,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
         dispatch(fetchArticlesList({ replace: true }));
     }, [dispatch]);
 
+    // Задержка на отправку запроса
     const debouncedFetchData = useDebounce(fetchData, 500);
 
     const onChangeView = useCallback((view: ArticleView) => {
@@ -61,7 +63,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
     const onChangeSearch = useCallback((search: string) => {
         dispatch(articlesPageActions.setSearch(search));
         dispatch(articlesPageActions.setPage(1));
-        debouncedFetchData();
+        debouncedFetchData(); // Задержка на отправку запроса
     }, [dispatch, debouncedFetchData]);
 
     const onChangeType = useCallback((value: ArticleType) => {

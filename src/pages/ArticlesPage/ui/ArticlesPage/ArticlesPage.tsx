@@ -19,6 +19,7 @@ import {
     getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 
+// 8_3
 interface ArticlesPageProps {
     className?: string;
 }
@@ -27,21 +28,27 @@ const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
 };
 
+// подключить страницу app/providers/router/routeConfig
+// export default, чтобы работали чанки
 const ArticlesPage = (props: ArticlesPageProps) => {
     const { className } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+
+    // генерирует селекторы в слайсе
     const articles = useSelector(getArticles.selectAll);
     const isLoading = useSelector(getArticlesPageIsLoading);
     const view = useSelector(getArticlesPageView);
     const error = useSelector(getArticlesPageError);
     const [searchParams] = useSearchParams();
 
+    // пагинация useInfiniteScroll
     const onLoadNextPart = useCallback(() => {
         dispatch(fetchNextArticlesPage());
     }, [dispatch]);
 
     useInitialEffect(() => {
+        // searchParams 9_3 40min
         dispatch(initArticlesPage(searchParams));
     });
 
@@ -62,5 +69,5 @@ const ArticlesPage = (props: ArticlesPageProps) => {
         </DynamicModuleLoader>
     );
 };
-
+// export default, чтобы работали чанки
 export default memo(ArticlesPage);

@@ -5,6 +5,7 @@ import { Page } from 'widgets/Page/Page';
 import { useParams } from 'react-router-dom';
 import cls from './ArticleEditPage.module.scss';
 
+// 9_5
 interface ArticleEditPageProps {
     className?: string;
 }

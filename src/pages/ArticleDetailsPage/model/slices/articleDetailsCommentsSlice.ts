@@ -11,10 +11,14 @@ const commentsAdapter = createEntityAdapter<Comment>({
     selectId: (comment) => comment.id,
 });
 
+// селекторы
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
     (state) => state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
 );
 
+// Нормализация данных 7_5 21-28min
+
+// 7_5 29min
 const articleDetailsCommentsSlice = createSlice({
     name: 'articleDetailsCommentsSlice',
     initialState: commentsAdapter.getInitialState<ArticleDetailsCommentsSchema>({
@@ -35,6 +39,7 @@ const articleDetailsCommentsSlice = createSlice({
                 action: PayloadAction<Comment[]>,
             ) => {
                 state.isLoading = false;
+                // 45-46min
                 commentsAdapter.setAll(state, action.payload);
             })
             .addCase(fetchCommentsByArticleId.rejected, (state, action) => {

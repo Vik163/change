@@ -12,10 +12,15 @@ const articlesAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id,
 });
 
+// селекторы
 export const getArticles = articlesAdapter.getSelectors<StateSchema>(
+    // возвращает нужную часть стейта или дефолтный стейт
     (state) => state.articlesPage || articlesAdapter.getInitialState(),
 );
 
+// Нормализация данных 7_5 21-28min
+
+// 8_4
 const articlesPageSlice = createSlice({
     name: 'articlesPageSlice',
     initialState: articlesAdapter.getInitialState<ArticlesPageSchema>({
@@ -56,8 +61,9 @@ const articlesPageSlice = createSlice({
         initState: (state) => {
             const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleView;
             state.view = view;
+            // пагинация
             state.limit = view === ArticleView.BIG ? 4 : 9;
-            state._inited = true;
+            state._inited = true; // 9_1 5min
         },
     },
     extraReducers: (builder) => {
@@ -65,18 +71,21 @@ const articlesPageSlice = createSlice({
             .addCase(fetchArticlesList.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
-
+                // 9_3 27min
                 if (action.meta.arg.replace) {
                     articlesAdapter.removeAll(state);
                 }
             })
             .addCase(fetchArticlesList.fulfilled, (
                 state,
-                action,
+                // action: PayloadAction<Article[]>,
+                action, // 9_3 27min
             ) => {
                 state.isLoading = false;
+                // 8_5 21:12min
+                // articlesAdapter.addMany(state, action.payload);
                 state.hasMore = action.payload.length >= state.limit;
-
+                // 9_3 27min
                 if (action.meta.arg.replace) {
                     articlesAdapter.setAll(state, action.payload);
                 } else {

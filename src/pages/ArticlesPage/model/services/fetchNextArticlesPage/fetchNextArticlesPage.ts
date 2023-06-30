@@ -8,6 +8,7 @@ import {
 import { articlesPageActions } from '../../slices/articlesPageSlice';
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
+// 8_5 под конец
 export const fetchNextArticlesPage = createAsyncThunk<
     void,
     void,

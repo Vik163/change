@@ -11,10 +11,13 @@ import {
     getArticlesPageType,
 } from '../../selectors/articlesPageSelectors';
 
+// 8_5 3min пагинация
 interface FetchArticlesListProps {
+    //    page?: number
     replace?: boolean;
 }
 
+// 8_4
 export const fetchArticlesList = createAsyncThunk<
     Article[],
     FetchArticlesListProps,
@@ -37,11 +40,12 @@ export const fetchArticlesList = createAsyncThunk<
                 const response = await extra.api.get<Article[]>('/articles', {
                     params: {
                         _expand: 'user',
+                        // 8_5 4,58min
                         _limit: limit,
                         _page: page,
                         _sort: sort,
                         _order: order,
-                        q: search,
+                        q: search, // 9_3 24min
                         type: type === ArticleType.ALL ? undefined : type,
                     },
                 });

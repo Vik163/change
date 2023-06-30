@@ -7,6 +7,12 @@ import {
     fetchCommentsByArticleId,
 } from '../../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
+// 8_1
+// принимает два или три дженерика: 1 - что возвращает, 2 - принимает, 3 - свойства thunkAPI
+// свойства thunkAPI по умолчанию unknow, поэтому перезаписываем rejectValue: string
+// export const addCommentForArticle = createAsyncThunk<Comment, (достаем из стейта), { rejectValue: string, extra: ThunkExtraArg }>(
+// пропишем типы { rejectValue: string, extra: ThunkExtraArg } - ThunkConfig
+// ThunkConfig 5_6 - 16 min
 export const addCommentForArticle = createAsyncThunk<
     Comment,
     string,
@@ -36,6 +42,7 @@ export const addCommentForArticle = createAsyncThunk<
                     throw new Error();
                 }
 
+                // обновляет отправленный комментарий
                 dispatch(fetchCommentsByArticleId(article.id));
 
                 return response.data;

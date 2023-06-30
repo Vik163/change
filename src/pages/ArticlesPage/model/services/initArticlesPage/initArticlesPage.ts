@@ -8,7 +8,7 @@ import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 
 export const initArticlesPage = createAsyncThunk<
     void,
-    URLSearchParams,
+    URLSearchParams, // searchParams 9_3 40min
     ThunkConfig<string>
     >(
         'articlesPage/initArticlesPage',
@@ -16,7 +16,7 @@ export const initArticlesPage = createAsyncThunk<
             const { getState, dispatch } = thunkApi;
             const inited = getArticlesPageInited(getState());
 
-            if (!inited) {
+            if (!inited) { // 9_1 5min
                 const orderFromUrl = searchParams.get('order') as SortOrder;
                 const sortFromUrl = searchParams.get('sort') as ArticleSortField;
                 const searchFromUrl = searchParams.get('search');

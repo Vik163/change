@@ -31,6 +31,7 @@ interface ProfilePageProps {
     className?: string;
 }
 
+// подключить страницу app/providers/router/routeConfig
 const ProfilePage = ({ className }: ProfilePageProps) => {
     const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
@@ -41,6 +42,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     const validateErrors = useSelector(getProfileValidateErrors);
     const { id } = useParams<{ id: string }>();
 
+    // Переводы - мапинг
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
         [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный регион'),
@@ -117,4 +119,5 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     );
 };
 
+// export default, чтобы работали чанки
 export default ProfilePage;

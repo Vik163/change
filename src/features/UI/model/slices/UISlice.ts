@@ -5,6 +5,7 @@ const initialState: UISchema = {
     scroll: {},
 };
 
+// 9_2
 export const uiSlice = createSlice({
     name: 'ui',
     initialState,

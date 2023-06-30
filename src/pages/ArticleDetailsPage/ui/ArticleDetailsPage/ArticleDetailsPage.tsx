@@ -33,14 +33,20 @@ interface ArticleDetailsPageProps {
 }
 
 const reducers: ReducersList = {
+    // articleDetailsComments: articleDetailsCommentsReducer, 9_4 15min
+    // articleDetailsRecommendations: articleDetailsPageRecommendationsReducer,
     articleDetailsPage: articleDetailsPageReducer,
 };
 
+// подключить страницу app/providers/router/routeConfig
+// export default, чтобы работали чанки
 const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     const { className } = props;
     const { t } = useTranslation('article-details');
     const { id } = useParams<{ id: string }>();
     const dispatch = useDispatch();
+
+    // 7_5 37min
     const comments = useSelector(getArticleComments.selectAll);
     const recommendations = useSelector(getArticleRecommendations.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
@@ -50,6 +56,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
         dispatch(addCommentForArticle(text));
     }, [dispatch]);
 
+    // пользовательский хук (проверка storybook) 7_5 42-43min
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
         dispatch(fetchArticleRecommendations());
@@ -93,5 +100,5 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
         </DynamicModuleLoader>
     );
 };
-
+// export default, чтобы работали чанки
 export default memo(ArticleDetailsPage);

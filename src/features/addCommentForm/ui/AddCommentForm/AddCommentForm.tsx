@@ -10,6 +10,7 @@ import { addCommentFormActions, addCommentFormReducer } from '../../model/slices
 import { getAddCommentFormError, getAddCommentFormText } from '../../model/selectors/addCommentFormSelectors';
 import cls from './AddCommentForm.module.scss';
 
+// 8_1
 export interface AddCommentFormProps {
     className?: string;
     onSendComment: (text: string) => void;
@@ -26,6 +27,7 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
     const error = useSelector(getAddCommentFormError);
     const dispatch = useAppDispatch();
 
+    // Если передаем пропсом, то используем useCallback
     const onCommentTextChange = useCallback((value: string) => {
         dispatch(addCommentFormActions.setText(value));
     }, [dispatch]);
