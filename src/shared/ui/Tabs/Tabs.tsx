@@ -8,6 +8,7 @@ export interface TabItem {
     content: ReactNode;
 }
 
+// 9_3 45min
 interface TabsProps {
     className?: string;
     tabs: TabItem[];
@@ -20,6 +21,7 @@ export const Tabs = memo((props: TabsProps) => {
         className, tabs, onTabClick, value,
     } = props;
 
+    // замыкание 9_3 49min
     const clickHandle = useCallback((tab: TabItem) => () => {
         onTabClick(tab);
     }, [onTabClick]);

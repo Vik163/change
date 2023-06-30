@@ -14,6 +14,7 @@ export const Avatar = ({
 }: AvatarProps) => {
     const mods: Mods = {};
 
+    // useMemo, чтобы не менял ссылку объекта
     const styles = useMemo<CSSProperties>(() => ({
         width: size || 100,
         height: size || 100,

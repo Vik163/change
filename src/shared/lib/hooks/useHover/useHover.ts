@@ -5,6 +5,7 @@ interface UseHoverBind {
     onMouseLeave: () => void;
 }
 
+// 8_3 21min
 type UseHoverResult = [boolean, UseHoverBind]
 
 export const useHover = () => {

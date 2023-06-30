@@ -24,6 +24,8 @@ export const AppLink = memo((props: AppLinkProps) => {
         ...otherProps
     } = props;
 
+    // cls[theme] - [theme] ключ secondary из объекта классов cls
+
     return (
         <Link
             to={to}

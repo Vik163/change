@@ -22,6 +22,8 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     const store = useStore() as ReduxStoreWithManager;
     const dispatch = useDispatch();
 
+    // Добавляем редьюсер при монтировании и удаляем при размонтировании
+    // name as StateSchemaKey 5_6 - 10 min
     useEffect(() => {
         const mountedReducers = store.reducerManager.getMountedReducers();
 
@@ -30,6 +32,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
             // Добавляем новый редюсер только если его нет
             if (!mounted) {
                 store.reducerManager.add(name as StateSchemaKey, reducer);
+                // проверить в devtools работу добаления и удаления
                 dispatch({ type: `@INIT ${name} reducer` });
             }
         });
@@ -46,6 +49,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     }, []);
 
     return (
+    // div - не нужные стили
         // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
             {children}

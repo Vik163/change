@@ -1,3 +1,5 @@
+// 9_3 34min
+
 export function getQueryParams(params: OptionalRecord<string, string>) {
     const searchParams = new URLSearchParams(window.location.search);
     Object.entries(params).forEach(([name, value]) => {
@@ -13,5 +15,6 @@ export function getQueryParams(params: OptionalRecord<string, string>) {
  * @param params
  */
 export function addQueryParams(params: OptionalRecord<string, string>) {
+    // 9_3 33min
     window.history.pushState(null, '', getQueryParams(params));
 }

@@ -7,6 +7,7 @@ export interface SelectOption {
     content: string;
 }
 
+// 9_3 19min <T extends string>
 interface SelectProps {
     className?: string;
     label?: string;

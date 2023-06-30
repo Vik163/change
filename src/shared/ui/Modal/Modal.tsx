@@ -12,6 +12,7 @@ interface ModalProps {
     children?: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
+    // чтобы модалка загружалась не сразу
     lazy?: boolean;
 }
 
@@ -28,6 +29,7 @@ export const Modal = (props: ModalProps) => {
 
     const [isClosing, setIsClosing] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
+    // as MutableRefObject<ReturnType<typeof setTimeout>> 5-6 2 min
     const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
     const { theme } = useTheme();
 
@@ -37,6 +39,7 @@ export const Modal = (props: ModalProps) => {
         }
     }, [isOpen]);
 
+    // анимация закрытия модалки
     const closeHandler = useCallback(() => {
         if (onClose) {
             setIsClosing(true);
@@ -54,6 +57,7 @@ export const Modal = (props: ModalProps) => {
         }
     }, [closeHandler]);
 
+    // не закрывает модалку по клику на ней
     const onContentClick = (e: React.MouseEvent) => {
         e.stopPropagation();
     };
@@ -74,6 +78,7 @@ export const Modal = (props: ModalProps) => {
         [cls.isClosing]: isClosing,
     };
 
+    // если усть флаг lazy и не монтирована, то возвращается Null и модалка не открывается
     if (lazy && !isMounted) {
         return null;
     }

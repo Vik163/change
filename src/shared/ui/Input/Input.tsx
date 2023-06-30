@@ -4,8 +4,13 @@ import React, {
 } from 'react';
 import cls from './Input.module.scss';
 
+// Конфликт типов 4_5 12 минута
+// Omit забирает пропсы - первый аргумент, исключает ненужные - второй аргумент
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
 
+// Было
+// interface InputProps extends InputHTMLAttributes<HTMLInputTypeAttribute> {
+// Стало
 interface InputProps extends HTMLInputProps {
     className?: string;
     value?: string | number;
@@ -29,6 +34,7 @@ export const Input = memo((props: InputProps) => {
     const [isFocused, setIsFocused] = useState(false);
     const [caretPosition, setCaretPosition] = useState(0);
 
+    // видимость каретки
     const isCaretVisible = isFocused && !readonly;
 
     useEffect(() => {
@@ -39,18 +45,18 @@ export const Input = memo((props: InputProps) => {
     }, [autofocus]);
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // т.к. пропс onChange не обязательный, то используем оператор ? - 4_5 14 минута
         onChange?.(e.target.value);
         setCaretPosition(e.target.value.length);
     };
 
+    // фокус и положение каретки
     const onBlur = () => {
         setIsFocused(false);
     };
-
     const onFocus = () => {
         setIsFocused(true);
     };
-
     const onSelect = (e: any) => {
         setCaretPosition(e?.target?.selectionStart || 0);
     };
