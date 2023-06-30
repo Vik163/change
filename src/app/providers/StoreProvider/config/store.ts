@@ -11,6 +11,7 @@ export function createReduxStore(
     initialState?: StateSchema,
     asyncReducers?: ReducersMapObject<StateSchema>,
 ) {
+    // В корневом редьюсере только обязательные
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         counter: counterReducer,
@@ -25,20 +26,25 @@ export function createReduxStore(
     };
 
     const store = configureStore({
+        // as Reducer<CombinedState<StateSchema>> 5_6 - 13 min 18min
         reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
+        // axios
         middleware: (getDefaultMiddleware) => getDefaultMiddleware({
             thunk: {
                 extraArgument: extraArg,
             },
         }),
     });
-
+    // добавляем новое поле в store
     // @ts-ignore
     store.reducerManager = reducerManager;
 
     return store;
 }
-
+// export type AppDispatch = typeof store.dispatch
+// снаружи получить dispatch не можем,
+// поэтому используем ReturnType<typeof createReduxStore>
+// получаем тип самого store и нужно добавить ['dispatch'], чтобы получить его тип
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

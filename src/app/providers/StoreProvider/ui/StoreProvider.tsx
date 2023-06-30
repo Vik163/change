@@ -5,9 +5,11 @@ import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
 
+// DeepPartial 5_6 7-8min
 interface StoreProviderProps {
     children?: ReactNode;
     initialState?: DeepPartial<StateSchema>;
+    // asyncReducers для storybook 5_1 39 минута
     asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
 }
 
@@ -18,7 +20,8 @@ export const StoreProvider = (props: StoreProviderProps) => {
         asyncReducers,
     } = props;
 
-    // const navigate = useNavigate();
+    // для asyncThunk
+    // const navigate = useNavigate(); - ошибка
 
     const store = createReduxStore(
         initialState as StateSchema,

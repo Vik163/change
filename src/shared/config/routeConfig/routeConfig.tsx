@@ -19,10 +19,11 @@ export enum AppRoutes {
     ARTICLE_DETAILS = 'article_details',
     ARTICLE_CREATE = 'article_create',
     ARTICLE_EDIT = 'article_edit',
-    // last
+    // последний
     NOT_FOUND = 'not_found',
 }
 
+// объект с ключами из перечисления и путями
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.ABOUT]: '/about',
@@ -35,6 +36,8 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.NOT_FOUND]: '*',
 };
 
+// Объект с ключами из перечисления и пропсами роутов (путь, элемент)
+// RouteProps из node-modules/react-router/index.d.ts
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
@@ -69,7 +72,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <ArticleEditPage />,
         authOnly: true,
     },
-    // last
+    // последний
     [AppRoutes.NOT_FOUND]: {
         path: RoutePath.not_found,
         element: <NotFoundPage />,

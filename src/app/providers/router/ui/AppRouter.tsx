@@ -22,6 +22,7 @@ const AppRouter = () => {
 
     return (
         <Routes>
+            {/* Описываем роуты в routeConfig и через Object.values получаем их массив */}
             {Object.values(routeConfig).map(renderWithWrapper)}
         </Routes>
     );

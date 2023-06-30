@@ -29,8 +29,10 @@ export interface StateSchema {
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;
+    // articleDetailsComments?: ArticleDetailsCommentsShema; 9_4 12min
+    // articleDetailsRecommendations?: ArticleDetailsRecommendationsSchema;
     articlesPage?: ArticlesPageSchema;
-    articleDetailsPage?: ArticleDetailsPageSchema;
+    articleDetailsPage?: ArticleDetailsPageSchema; // 9_4 12min
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -41,7 +43,7 @@ export interface ReducerManager {
     reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
-    // true - вмонтирован, false - демонтирован
+    // true -  вмонтирован редьюсер, false - нет 9_1 9мин
     getMountedReducers: () => MountedReducers;
 }
 
@@ -53,6 +55,9 @@ export interface ThunkExtraArg {
     api: AxiosInstance;
 }
 
+// thunkAPI - { rejectValue: string, extra: ThunkExtraArg }
+// преобразуем
+// дженерик Т - тип ошибки
 export interface ThunkConfig<T> {
     rejectValue: T;
     extra: ThunkExtraArg;
