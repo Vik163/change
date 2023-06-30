@@ -1,5 +1,5 @@
 {
-  "name": "project-ulbi-new-skills",
+  "name": "change",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "webpack serve --env port=3000",
     "start:dev": "concurrently \"npm start\" \"npm run start:dev:server\"",
     "start:dev:server": "node ./json-server/index.js",
-    "build:prod": "webpack  --env mode=production apiUrl=https://project-ulbi-new-skills-server.vercel.app",
+    "build:prod": "webpack  --env mode=production apiUrl=https://change-server.vercel.app",
     "build:dev": "webpack  --env mode=development",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
