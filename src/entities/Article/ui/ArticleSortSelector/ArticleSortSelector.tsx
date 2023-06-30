@@ -6,6 +6,7 @@ import { ArticleSortField } from 'entities/Article/model/types/article';
 import { SortOrder } from 'shared/types';
 import cls from './ArticleSortSelector.module.scss';
 
+// 9_3
 interface ArticleSortSelectorProps {
     className?: string;
     sort: ArticleSortField;

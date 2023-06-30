@@ -32,7 +32,7 @@ export const ArticleTypeTabs = memo((props: ArticleTypeTabsProps) => {
             content: t('Наука'),
         },
     ], [t]);
-
+    // обертка скастовать тип
     const onTabClick = useCallback((tab: TabItem) => {
         onChangeType(tab.value as ArticleType);
     }, [onChangeType]);

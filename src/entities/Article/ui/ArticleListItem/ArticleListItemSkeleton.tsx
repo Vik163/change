@@ -5,6 +5,7 @@ import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import cls from './ArticleListItem.module.scss';
 import { ArticleView } from '../../model/types/article';
 
+// 8_3
 interface ArticleListItemSkeletonProps {
     className?: string;
     view: ArticleView;

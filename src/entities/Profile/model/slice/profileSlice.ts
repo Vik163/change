@@ -22,6 +22,9 @@ export const profileSlice = createSlice({
             state.validateErrors = undefined;
             state.form = state.data;
         },
+        // разворачиваем новый объект,
+        // разворачиваем старую data, разворачиваем новую data
+        // если какое-то поле обновили, то оно перезатрется
         updateProfile: (state, action: PayloadAction<Profile>) => {
             state.form = {
                 ...state.form,

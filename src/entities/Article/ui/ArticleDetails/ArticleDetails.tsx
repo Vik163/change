@@ -71,11 +71,13 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         }
     }, []);
 
+    // пользовательский хук (проверка storybook) 7_5 42-43min
     useEffect(() => {
         if (__PROJECT__ !== 'storybook') {
             dispatch(fetchArticleById(id));
         }
     }, [dispatch, id]);
+    //------------------------------
 
     let content;
 

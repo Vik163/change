@@ -16,6 +16,7 @@ import {
 } from '../../model/types/article';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
+// 8_3
 interface ArticleListItemProps {
     className?: string;
     article: Article;
@@ -37,7 +38,12 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         </>
     );
 
+    // const onOpenArticle = useCallback(() => {
+    //     navigate(RoutePath.article_details + article.id);
+    // }, [article.id, navigate]);
+
     if (view === ArticleView.BIG) {
+        // параграфы
         const textBlock = article.blocks.find(
             (block) => block.type === ArticleBlockType.TEXT,
         ) as ArticleTextBlock;

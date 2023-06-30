@@ -7,6 +7,7 @@ import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import cls from './ArticleList.module.scss';
 import { Article, ArticleView } from '../../model/types/article';
 
+// 8_3
 interface ArticleListProps {
     className?: string;
     articles: Article[]
