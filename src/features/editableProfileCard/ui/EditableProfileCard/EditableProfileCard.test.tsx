@@ -8,6 +8,7 @@ import { $api } from 'shared/api/api';
 import { profileReducer } from '../../model/slice/profileSlice';
 import { EditableProfileCard } from './EditableProfileCard';
 
+// 11_4 4min
 const profile: Profile = {
     id: '1',
     first: 'admin',
