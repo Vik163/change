@@ -11,7 +11,10 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         use: ['@svgr/webpack'],
     };
 
-    const babelLoader = buildBabelLoader(options);
+    // const babelLoader = buildBabelLoader(options);
+    // 11_10 4min
+    const codeBabelLoader = buildBabelLoader({ ...options, isTsx: false });
+    const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTsx: true });
 
     const cssLoader = buildCssLoader(isDev);
 
@@ -35,10 +38,12 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     // имеет значение место в массиве сначала babelLoader потом typeScriptLoaders
     // ПОРЯДОК ВАЖЕН
     return [
-        babelLoader,
+        // babelLoader,
         fileLoader,
         svgLoader,
-        typescriptLoader,
+        codeBabelLoader,
+        tsxCodeBabelLoader,
+        // typescriptLoader,
         cssLoader,
     ];
 }

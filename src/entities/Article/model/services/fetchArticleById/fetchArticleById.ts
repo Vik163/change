@@ -8,7 +8,7 @@ import { Article } from '../../types/article';
 // пропишем типы { rejectValue: string, extra: ThunkExtraArg } - ThunkConfig
 export const fetchArticleById = createAsyncThunk<
     Article,
-    string,
+    string | undefined,
     ThunkConfig<string>
     >(
         'articleDetails/fetchArticleById',
@@ -16,6 +16,9 @@ export const fetchArticleById = createAsyncThunk<
             const { extra, rejectWithValue } = thunkApi;
 
             try {
+                if (!articleId) {
+                    throw new Error('');
+                }
                 const response = await extra.api.get<Article>(`/articles/${articleId}`, {
                     params: {
                         _expand: 'user',

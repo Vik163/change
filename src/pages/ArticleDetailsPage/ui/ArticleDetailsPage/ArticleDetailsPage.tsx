@@ -45,14 +45,6 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     // dispatch(fetchArticleRecommendations());
     // });
 
-    if (!id) {
-        return (
-            <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-                {t('Статья не найдена')}
-            </Page>
-        );
-    }
-
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>

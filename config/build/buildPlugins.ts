@@ -3,6 +3,8 @@ import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import CircularDependencyPlugin from 'circular-dependency-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { BuildOptions } from './types/config';
 
@@ -35,6 +37,21 @@ export function buildPlugins({
             patterns: [
                 { from: paths.locales, to: paths.buildLocales },
             ],
+        }),
+        // кольцевые зависимости 11_9
+        new CircularDependencyPlugin({
+            exclude: /node_modules/,
+            failOnError: true, // при обнаружении выпадает ошибка
+        }),
+        // миграция на babel-loader 11_10 8min обработка типов отдельно при загрузке
+        new ForkTsCheckerWebpackPlugin({
+            typescript: {
+                diagnosticOptions: {
+                    semantic: true,
+                    syntactic: true,
+                },
+                mode: 'write-references',
+            },
         }),
     ];
 
