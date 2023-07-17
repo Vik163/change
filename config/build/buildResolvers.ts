@@ -10,6 +10,8 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
         // указываем главный файл
         mainFiles: ['index'],
         // если оставляем пустой объект, не надо указвать @
-        alias: {},
+        alias: {
+            '@': options.paths.src, // 12_5 2min
+        },
     };
 }

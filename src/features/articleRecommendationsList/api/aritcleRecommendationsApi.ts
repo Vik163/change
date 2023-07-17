@@ -1,5 +1,5 @@
-import { rtkApi } from 'shared/api/rtkApi';
-import { Article } from 'entities/Article';
+import { rtkApi } from '@/shared/api/rtkApi';
+import { Article } from '@/entities/Article';
 
 // 11_2 5min, 15min
 const recommendationsApi = rtkApi.injectEndpoints({
