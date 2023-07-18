@@ -101,7 +101,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
     );
 });
 
-// 12_4 17min
+// 12_4 17min, 12_6
 const DrawerAsync = (props: DrawerProps) => {
 // загружаем библиотеки
     const { isLoaded } = useAnimationLibs();
