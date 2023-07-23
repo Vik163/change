@@ -1,4 +1,4 @@
-import { NodePath, PluginItem } from '@babel/core';
+import { PluginItem } from '@babel/core';
 
 // 11_10 10min
 export default function (): PluginItem {

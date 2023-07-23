@@ -1,5 +1,5 @@
 import {
-    DetailedHTMLProps, HTMLAttributes, ReactNode, memo,
+    DetailedHTMLProps, HTMLAttributes, ReactNode,
 } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 

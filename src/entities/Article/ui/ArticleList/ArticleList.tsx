@@ -3,9 +3,8 @@ import { HTMLAttributeAnchorTarget, memo } from 'react';
 // import {
 //     AutoSizer, List, ListRowProps, WindowScroller,
 // } from 'react-virtualized';
-import { Text, TextSize } from '@/shared/ui/Text/Text';
+import { Text, TextSize } from '@/shared/ui/Text';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { PAGE_ID } from '@/widgets/Page/Page';
 import { ArticleView } from '../../model/consts/articleConsts';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import cls from './ArticleList.module.scss';

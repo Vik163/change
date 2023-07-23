@@ -43,6 +43,7 @@ export default {
     moduleNameMapper: {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+        '^@/(.*)$': '<rootDir>/src/$1', // 13_11 alias
     },
     reporters: [ // jest-html-reporters 11_3
         'default',

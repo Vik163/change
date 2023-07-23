@@ -1,28 +1,3 @@
-// module.exports = {
-//     env: {
-//         browser: true,
-//         es2021: true,
-//         jest: true,
-//     },
-//     extends: [
-//         'plugin:react/recommended',
-//         'airbnb',
-//         'plugin:i18next/recommended',
-//     ],
-//     parser: '@typescript-eslint/parser',
-//     parserOptions: {
-//         ecmaFeatures: {
-//             jsx: true,
-//         },
-//         ecmaVersion: 'latest',
-//         sourceType: 'module',
-//     },
-//     plugins: [
-//         'react',
-//         '@typescript-eslint',
-//         'i18next',
-//         'react-hooks',
-//     ],
 //     rules: {
 //         'react/jsx-indent': [2, 4],
 //         'react/jsx-indent-props': [2, 4],
@@ -71,22 +46,6 @@
 //         'linebreak-style': 'off', // LF
 
 //     },
-//     globals: {
-//         __IS_DEV__: true,
-//         __API__: true,
-//         __PROJECT__: true,
-//     },
-//     // переопределяет правила линта
-//     overrides: [
-//         {
-//             files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
-//             rules: {
-//                 'i18next/no-literal-string': 'off',
-//                 'max-len': 'off',
-//             },
-//         },
-//     ],
-// };
 
 module.exports = {
     env: {
@@ -113,10 +72,13 @@ module.exports = {
         'i18next',
         'react-hooks',
         'ulbi-tv-plugin',
+        'unused-imports',
+        // eslint-plugin-import 13_8 1.40min популярный плагин
     ],
     rules: {
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
+        'unused-imports/no-unused-imports': 'error', // 13_8
         indent: [2, 4],
         'react/jsx-filename-extension': [
             2,
@@ -150,7 +112,21 @@ module.exports = {
         'no-undef': 'off',
         'react/no-array-index-key': 'off',
         'arrow-body-style': 'off',
-        'ulbi-tv-plugin/path-checker': 'error', // кастомный плагин
+        'ulbi-tv-plugin/path-checker': ['error', { alias: '@' }], // кастомный плагин 10_2 и 13_2 7min
+        'ulbi-tv-plugin/layer-imports': [ // 13_6 6min
+            'error',
+            {
+                alias: '@',
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+            },
+        ],
+        'ulbi-tv-plugin/public-api-imports': [ // кастомный плагин 13_3 7min
+            'error',
+            {
+                alias: '@',
+                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'], // 13_4 1min
+            },
+        ],
         'linebreak-style': 'off', // LF
         'react/self-closing-comp': 'off', // сжимает пустой компонент
     },

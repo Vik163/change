@@ -1,5 +1,4 @@
 import { rtkApi } from '@/shared/api/rtkApi';
-import { Article } from '@/entities/Article';
 import { Notification } from '../model/types/notification';
 
 // 12_1 17min
