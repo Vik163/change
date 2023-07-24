@@ -26,8 +26,8 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
         },
         resolve: buildResolvers(options), // Чтобы не указывать расширение при импорте
         // Не срабатывают при production
-        // devtool: isDev ? 'inline-source-map' : undefined, // позволяет видеть кде в коде произошла ошибка
-        devtool: isDev ? 'inline-source-map' : undefined,
+        // devtool: isDev ? 'eval-cheap-module-source-map' : undefined, // позволяет видеть кде в коде произошла ошибка
+        devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
         devServer: isDev ? buildDevServer(options) : undefined,
         // externals: {
     //   vscode: 'commonjs vscode', // the vscode-module is created on-the-fly and must be excluded. Add other modules that cannot be webpack'ed, 📖 -> https://webpack.js.org/configuration/externals/
