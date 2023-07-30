@@ -4,7 +4,7 @@ import { Page } from '@/widgets/Page';
 // 11_5
 const AdminPanelPage = () => {
     return (
-        <Page>
+        <Page data-testid="AdminPanelPage">
             Админ панель
         </Page>
     );
