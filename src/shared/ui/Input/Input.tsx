@@ -1,12 +1,19 @@
 import React, {
-    InputHTMLAttributes, memo, useEffect, useRef, useState,
+    InputHTMLAttributes,
+    memo,
+    useEffect,
+    useRef,
+    useState,
 } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 
 // Конфликт типов 4_5 12 минута
 // Omit забирает пропсы - первый аргумент, исключает ненужные - второй аргумент
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
+type HTMLInputProps = Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'value' | 'onChange' | 'readOnly'
+>;
 
 // Было
 // interface InputProps extends InputHTMLAttributes<HTMLInputTypeAttribute> {
@@ -68,9 +75,7 @@ export const Input = memo((props: InputProps) => {
     return (
         <div className={classNames(cls.InputWrapper, {}, [className])}>
             {placeholder && (
-                <div className={cls.placeholder}>
-                    {`${placeholder}>`}
-                </div>
+                <div className={cls.placeholder}>{`${placeholder}>`}</div>
             )}
             <div className={cls.caretWrapper}>
                 <input

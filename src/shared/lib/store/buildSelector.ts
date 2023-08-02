@@ -3,7 +3,7 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 
 // 13_8 Заменяет useSelector
 type Selector<T> = (state: StateSchema) => T;
-type Result<T> = [() => T, Selector<T>]
+type Result<T> = [() => T, Selector<T>];
 
 export function buildSelector<T>(selector: Selector<T>): Result<T> {
     const useSelectorHook = () => {

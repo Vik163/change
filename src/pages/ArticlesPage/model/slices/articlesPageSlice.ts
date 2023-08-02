@@ -1,7 +1,14 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import {
-    Article, ArticleType, ArticleView, ArticleSortField,
+    Article,
+    ArticleType,
+    ArticleView,
+    ArticleSortField,
 } from '@/entities/Article';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { SortOrder } from '@/shared/types/sort';
@@ -41,7 +48,10 @@ const articlesPageSlice = createSlice({
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
             state.view = action.payload;
-            localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload);
+            localStorage.setItem(
+                ARTICLES_VIEW_LOCALSTORAGE_KEY,
+                action.payload,
+            );
         },
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
@@ -59,7 +69,9 @@ const articlesPageSlice = createSlice({
             state.search = action.payload;
         },
         initState: (state) => {
-            const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleView;
+            const view = localStorage.getItem(
+                ARTICLES_VIEW_LOCALSTORAGE_KEY,
+            ) as ArticleView;
             state.view = view;
             // пагинация
             state.limit = view === ArticleView.BIG ? 4 : 9;
@@ -76,22 +88,25 @@ const articlesPageSlice = createSlice({
                     articlesAdapter.removeAll(state);
                 }
             })
-            .addCase(fetchArticlesList.fulfilled, (
-                state,
-                // action: PayloadAction<Article[]>,
-                action, // 9_3 27min
-            ) => {
-                state.isLoading = false;
-                // 8_5 21:12min
-                // articlesAdapter.addMany(state, action.payload);
-                state.hasMore = action.payload.length >= state.limit;
-                // 9_3 27min
-                if (action.meta.arg.replace) {
-                    articlesAdapter.setAll(state, action.payload);
-                } else {
-                    articlesAdapter.addMany(state, action.payload);
-                }
-            })
+            .addCase(
+                fetchArticlesList.fulfilled,
+                (
+                    state,
+                    // action: PayloadAction<Article[]>,
+                    action, // 9_3 27min
+                ) => {
+                    state.isLoading = false;
+                    // 8_5 21:12min
+                    // articlesAdapter.addMany(state, action.payload);
+                    state.hasMore = action.payload.length >= state.limit;
+                    // 9_3 27min
+                    if (action.meta.arg.replace) {
+                        articlesAdapter.setAll(state, action.payload);
+                    } else {
+                        articlesAdapter.addMany(state, action.payload);
+                    }
+                },
+            )
             .addCase(fetchArticlesList.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
@@ -99,7 +114,5 @@ const articlesPageSlice = createSlice({
     },
 });
 
-export const {
-    reducer: articlesPageReducer,
-    actions: articlesPageActions,
-} = articlesPageSlice;
+export const { reducer: articlesPageReducer, actions: articlesPageActions } =
+    articlesPageSlice;

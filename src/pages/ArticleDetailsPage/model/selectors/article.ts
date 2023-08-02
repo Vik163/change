@@ -5,7 +5,8 @@ import { getArticleDetailsData } from '@/entities/Article';
 export const getCanEditArticle = createSelector(
     getArticleDetailsData,
     getUserAuthData,
-    (article, user) => { // 9_5 3min
+    (article, user) => {
+        // 9_5 3min
         if (!article || !user) {
             return false;
         }

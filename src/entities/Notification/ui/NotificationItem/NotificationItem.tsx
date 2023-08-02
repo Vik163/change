@@ -8,7 +8,7 @@ import { Notification } from '../../model/types/notification';
 // 12_1 19min
 interface NotificationItemProps {
     className?: string;
-    item: Notification
+    item: Notification;
 }
 
 export const NotificationItem = memo((props: NotificationItemProps) => {
@@ -25,7 +25,12 @@ export const NotificationItem = memo((props: NotificationItemProps) => {
 
     if (item.href) {
         return (
-            <a className={cls.link} target="_blank" href={item.href} rel="noreferrer">
+            <a
+                className={cls.link}
+                target="_blank"
+                href={item.href}
+                rel="noreferrer"
+            >
                 {content}
             </a>
         );

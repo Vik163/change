@@ -8,9 +8,7 @@ import { CommentList } from '@/entities/Comment';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { VStack } from '@/shared/ui/Stack';
 import { Loader } from '@/shared/ui/Loader';
-import {
-    fetchCommentsByArticleId,
-} from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
@@ -22,35 +20,37 @@ interface ArticleDetailsCommentsProps {
 }
 
 // 11_2 18min
-export const ArticleDetailsComments = memo((props: ArticleDetailsCommentsProps) => {
-    const { className, id } = props;
-    const { t } = useTranslation();
-    const comments = useSelector(getArticleComments.selectAll); // 11_2
-    const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-    const dispatch = useAppDispatch();
+export const ArticleDetailsComments = memo(
+    (props: ArticleDetailsCommentsProps) => {
+        const { className, id } = props;
+        const { t } = useTranslation();
+        const comments = useSelector(getArticleComments.selectAll); // 11_2
+        const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+        const dispatch = useAppDispatch();
 
-    const onSendComment = useCallback((text: string) => {
-        dispatch(addCommentForArticle(text));
-    }, [dispatch]);
+        const onSendComment = useCallback(
+            (text: string) => {
+                dispatch(addCommentForArticle(text));
+            },
+            [dispatch],
+        );
 
-    // пользовательский хук (проверка storybook) 7_5 42-43min
-    useInitialEffect(() => {
-        dispatch(fetchCommentsByArticleId(id));
-    });
+        // пользовательский хук (проверка storybook) 7_5 42-43min
+        useInitialEffect(() => {
+            dispatch(fetchCommentsByArticleId(id));
+        });
 
-    return (
-        <VStack gap="16" max className={classNames('', {}, [className])}>
-            <Text
-                size={TextSize.L}
-                title={t('Комментарии')}
-            />
-            <Suspense fallback={<Loader />}>
-                <AddCommentForm onSendComment={onSendComment} />
-            </Suspense>
-            <CommentList
-                isLoading={commentsIsLoading}
-                comments={comments}
-            />
-        </VStack>
-    );
-});
+        return (
+            <VStack gap="16" max className={classNames('', {}, [className])}>
+                <Text size={TextSize.L} title={t('Комментарии')} />
+                <Suspense fallback={<Loader />}>
+                    <AddCommentForm onSendComment={onSendComment} />
+                </Suspense>
+                <CommentList
+                    isLoading={commentsIsLoading}
+                    comments={comments}
+                />
+            </VStack>
+        );
+    },
+);

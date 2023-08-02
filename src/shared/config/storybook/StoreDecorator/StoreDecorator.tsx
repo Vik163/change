@@ -19,12 +19,17 @@ const defaultAsyncReducers: ReducersList = {
 };
 
 // DeepPartial<StateSchema> - нужна только часть StateSchema
-export const StoreDecorator = (
-    // DeepPartial 5_6 7-8min
-    state: DeepPartial<StateSchema>,
-    asyncReducers?: ReducersList,
-) => (StoryComponent: Story) => (
-    <StoreProvider initialState={state} asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}>
-        <StoryComponent />
-    </StoreProvider>
-);
+export const StoreDecorator =
+    (
+        // DeepPartial 5_6 7-8min
+        state: DeepPartial<StateSchema>,
+        asyncReducers?: ReducersList,
+    ) =>
+    (StoryComponent: Story) => (
+        <StoreProvider
+            initialState={state}
+            asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}
+        >
+            <StoryComponent />
+        </StoreProvider>
+    );

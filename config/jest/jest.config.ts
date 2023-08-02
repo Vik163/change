@@ -14,27 +14,20 @@ export default {
     },
     clearMocks: true, // очищаем моки
     testEnvironment: 'jsdom',
-    coveragePathIgnorePatterns: [ // игнорируем node-modules
+    coveragePathIgnorePatterns: [
+        // игнорируем node-modules
         '\\\\node_modules\\\\',
     ],
-    moduleFileExtensions: [
-        'js',
-        'jsx',
-        'ts',
-        'tsx',
-        'json',
-        'node',
-    ],
-    moduleDirectories: [
-        'node_modules',
-    ],
-    modulePaths: [ // для импортов
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+    moduleDirectories: ['node_modules'],
+    modulePaths: [
+        // для импортов
         '<rootDir>src',
     ],
     testMatch: [
         // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
         // регулярное выражение по которому находят файлы с тестами
-    // универсальная для мака и винды
+        // универсальная для мака и винды
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
     // The root directory that Jest should scan for tests and modules within
@@ -45,14 +38,18 @@ export default {
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
         '^@/(.*)$': '<rootDir>/src/$1', // 13_11 alias
     },
-    reporters: [ // jest-html-reporters 11_3
+    reporters: [
+        // jest-html-reporters 11_3
         'default',
-        ['jest-html-reporters', {
-            publicPath: '<rootDir>/reports/unit',
-            filename: 'report.html',
-            openReport: true,
-            inlineSource: true,
-        }],
+        [
+            'jest-html-reporters',
+            {
+                publicPath: '<rootDir>/reports/unit',
+                filename: 'report.html',
+                openReport: true,
+                inlineSource: true,
+            },
+        ],
     ],
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,

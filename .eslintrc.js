@@ -57,6 +57,7 @@ module.exports = {
         'plugin:react/recommended',
         'airbnb',
         'plugin:i18next/recommended',
+        'prettier',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -76,10 +77,7 @@ module.exports = {
         // eslint-plugin-import 13_8 1.40min популярный плагин
     ],
     rules: {
-        'react/jsx-indent': [2, 4],
-        'react/jsx-indent-props': [2, 4],
         'unused-imports/no-unused-imports': 'error', // 13_8
-        indent: [2, 4],
         'react/jsx-filename-extension': [
             2,
             { extensions: ['.js', '.jsx', '.tsx'] },
@@ -129,6 +127,7 @@ module.exports = {
         ],
         'linebreak-style': 'off', // LF
         'react/self-closing-comp': 'off', // сжимает пустой компонент
+        'react/jsx-max-props-per-line': ['error', {maximum: 3}] // 14_12 количество пропсов в строчке
     },
     globals: {
         __IS_DEV__: true,

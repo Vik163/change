@@ -9,15 +9,11 @@ interface StoreProviderProps {
     children?: ReactNode;
     initialState?: DeepPartial<StateSchema>;
     // asyncReducers для storybook 5_1 39 минута
-    asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
+    asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
 }
 
 export const StoreProvider = (props: StoreProviderProps) => {
-    const {
-        children,
-        initialState,
-        asyncReducers,
-    } = props;
+    const { children, initialState, asyncReducers } = props;
 
     // для asyncThunk
     // const navigate = useNavigate(); - ошибка
@@ -30,9 +26,5 @@ export const StoreProvider = (props: StoreProviderProps) => {
 
     console.log('RENDER');
 
-    return (
-        <Provider store={store}>
-            {children}
-        </Provider>
-    );
+    return <Provider store={store}>{children}</Provider>;
 };

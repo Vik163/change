@@ -33,11 +33,12 @@ export function createReduxStore(
         devTools: __IS_DEV__,
         preloadedState: initialState,
         // axios
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-            thunk: {
-                extraArgument: extraArg,
-            },
-        }).concat(rtkApi.middleware),
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                thunk: {
+                    extraArgument: extraArg,
+                },
+            }).concat(rtkApi.middleware),
     });
     // добавляем новое поле в store
     // @ts-ignore

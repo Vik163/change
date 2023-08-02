@@ -27,7 +27,7 @@ interface TextProps {
     theme?: TextTheme;
     align?: TextAlign;
     size?: TextSize;
-    'data-testid'?: string // 11_4 5min
+    'data-testid'?: string; // 11_4 5min
 }
 
 // 10_4
@@ -69,10 +69,7 @@ export const Text = memo((props: TextProps) => {
                 </HeaderTag>
             )}
             {text && (
-                <p
-                    className={cls.text}
-                    data-testid={`${dataTestId}.Paragraph`}
-                >
+                <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>
                     {text}
                 </p>
             )}

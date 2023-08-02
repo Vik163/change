@@ -7,7 +7,11 @@ export interface UseInfiniteScrollOptions {
 }
 // https://misha.agency/javascript/intersection-observer-api.html
 // 8_5 10-12min
-export function useInfiniteScroll({ callback, wrapperRef, triggerRef }: UseInfiniteScrollOptions) {
+export function useInfiniteScroll({
+    callback,
+    wrapperRef,
+    triggerRef,
+}: UseInfiniteScrollOptions) {
     const observer = useRef<IntersectionObserver | null>(null);
     // useEffect(() => {
     //     const wrapperElement = wrapperRef.current;
