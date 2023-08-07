@@ -15,7 +15,6 @@ import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDet
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 import { ArticleRating } from '@/features/articleRating';
 import { getFeatureFlag } from '@/shared/lib/features';
-import { Counter } from '@/entities/Counter';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -47,8 +46,16 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
                 <VStack gap="16" max>
                     <ArticleDetailsPageHeader />
                     <ArticleDetails id={id} />
-                    {isCounterEnabled && <Counter />}
-                    {isArticleRatingEnabled && <ArticleRating articleId={id} />}
+                    <ArticleRating articleId={id} />
+                    {/* 15_3 добавление featureFlag */}
+                    {/* {isCounterEnabled && <Counter />}
+                    {isArticleRatingEnabled && <ArticleRating articleId={id} />} */}
+                    {/* 15_4 удаление не нужного кода по featureFlag */}
+                    {/* <ToggleFeatures
+                        feature="isArticleRatingEnabled"
+                        on={<ArticleRating articleId={id} />}
+                        off={<Card> Оценка статей скоро появится! </Card>}
+                    /> */}
                     <ArticleRecommendationsList />
                     <ArticleDetailsComments id={id} />
                 </VStack>
