@@ -2,6 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { UserSchema, User } from '../types/user';
 import { setFeatureFlags } from '@/shared/lib/features';
+import { JsonSettings } from '../types/jsonSettings';
+import { saveJsonSettings } from '../services/saveJsonSettings';
+import { initAuthData } from '../services/initAuthData';
 
 const initialState: UserSchema = {
     _inited: false,
@@ -14,20 +17,34 @@ export const userSlice = createSlice({
         setAuthData: (state, action: PayloadAction<User>) => {
             state.authData = action.payload;
             setFeatureFlags(action.payload.features); // 15_3 6min
-        },
-        initAuthData: (state) => {
-            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
-            if (user) {
-                const json = JSON.parse(user) as User; // 15_3 6min
-                state.authData = json;
-                setFeatureFlags(json.features); // 15_3 6min
-            }
-            state._inited = true;
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id); // 15_5 15_6
         },
         logout: (state) => {
             state.authData = undefined;
             localStorage.removeItem(USER_LOCALSTORAGE_KEY);
         },
+    },
+    // 15_5 15min
+    extraReducers: (builder) => {
+        builder.addCase(
+            saveJsonSettings.fulfilled,
+            (state, { payload }: PayloadAction<JsonSettings>) => {
+                if (state.authData) {
+                    state.authData.jsonSettings = payload;
+                }
+            },
+        );
+        builder.addCase(
+            initAuthData.fulfilled,
+            (state, { payload }: PayloadAction<User>) => {
+                state.authData = payload;
+                setFeatureFlags(payload.features);
+                state._inited = true;
+            },
+        );
+        builder.addCase(initAuthData.rejected, (state) => {
+            state._inited = true;
+        });
     },
 });
 

@@ -1,10 +1,10 @@
-import React, { ReactNode, useMemo, useState } from 'react';
-import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
+import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 import { Theme } from '@/shared/const/theme';
+import { useJsonSettings } from '@/entities/User';
 
-const defaultTheme =
-    (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
+// const defaultTheme =
+//     (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
 
 interface ThemeProviderProps {
     initialTheme?: Theme;
@@ -15,8 +15,22 @@ interface ThemeProviderProps {
 const ThemeProvider = (props: ThemeProviderProps) => {
     const { initialTheme, children } = props;
 
+    // 15_5 20min и 15_6 7min получаем дефолтные настройки
+    const { theme: defaultTheme } = useJsonSettings();
+    const [isThemeInited, setThemeInited] = useState(false);
+
     // получаем тему из хранилища или light
-    const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme);
+    const [theme, setTheme] = useState<Theme>(
+        initialTheme || defaultTheme || Theme.LIGHT,
+    );
+
+    // 15_5 20min получаем дефолтные настройки
+    useEffect(() => {
+        if (!isThemeInited && defaultTheme) {
+            setTheme(defaultTheme);
+            setThemeInited(true);
+        }
+    }, [defaultTheme, isThemeInited]);
 
     // используем useMemo, чтобы при рендере не создавать новый а возвращать старый объект
     // если из массива зависимостей ничего не изменилось
