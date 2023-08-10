@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 import { getFeatureFlag } from '../setGetFeatures';
 
-// 15_4
+// 15_8
 interface ToggleFeaturesProps {
     feature: keyof FeatureFlags;
     on: ReactElement;

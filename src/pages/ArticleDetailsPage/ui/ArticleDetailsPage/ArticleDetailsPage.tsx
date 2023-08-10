@@ -50,7 +50,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
                     {/* 15_3 добавление featureFlag */}
                     {/* {isCounterEnabled && <Counter />}
                     {isArticleRatingEnabled && <ArticleRating articleId={id} />} */}
-                    {/* 15_4 удаление не нужного кода по featureFlag */}
+                    {/* 15_8 удаление не нужного кода по featureFlag */}
                     {/* <ToggleFeatures
                         feature="isArticleRatingEnabled"
                         on={<ArticleRating articleId={id} />}
