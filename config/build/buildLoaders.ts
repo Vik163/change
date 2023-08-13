@@ -8,7 +8,23 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
     const svgLoader = {
         test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        use: [{ // 16_2 2min
+            loader: '@svgr/webpack',
+            options: {
+                icon: true,
+                svgoConfig: {
+                    // Заменяет захардкоженные fill=цвет на fill=currentColor
+                    plugins: [ 
+                        {
+                            name: 'convertColors',
+                            params: {
+                                currentColor: true,
+                            }
+                        }
+                    ]
+                }
+            }
+        }],
     };
 
     // const babelLoader = buildBabelLoader(options);
