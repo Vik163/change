@@ -3,7 +3,7 @@ import { MutableRefObject, useEffect, useRef } from 'react';
 export interface UseInfiniteScrollOptions {
     callback?: () => void;
     triggerRef: MutableRefObject<HTMLElement>;
-    wrapperRef: MutableRefObject<HTMLElement>;
+    wrapperRef?: MutableRefObject<HTMLElement>;
 }
 // https://misha.agency/javascript/intersection-observer-api.html
 // 8_5 10-12min
@@ -48,7 +48,7 @@ export function useInfiniteScroll({
     // }, [callback, triggerRef, wrapperRef]);
 
     useEffect(() => {
-        const wrapperElement = wrapperRef.current;
+        const wrapperElement = wrapperRef?.current;
         const triggerElement = triggerRef.current;
 
         if (callback) {

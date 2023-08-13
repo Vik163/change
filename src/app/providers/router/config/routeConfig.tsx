@@ -19,8 +19,10 @@ import {
     getRouteForbidden,
     getRouteMain,
     getRouteProfile,
+    getRouteSettings,
 } from '@/shared/const/router';
 import { AppRoutesProps } from '@/shared/types/router';
+import { SettingsPage } from '@/pages/SettingsPage';
 
 // Объект с ключами из перечисления и пропсами роутов (путь, элемент)
 // RouteProps из node-modules/react-router/index.d.ts
@@ -28,6 +30,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: getRouteMain(), // 13_15
         element: <MainPage />,
+    },
+    [AppRoutes.SETTINGS]: {
+        path: getRouteSettings(),
+        element: <SettingsPage />,
     },
     [AppRoutes.ABOUT]: {
         path: getRouteAbout(),

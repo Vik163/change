@@ -9,11 +9,17 @@ import { AppRouter } from './providers/router';
 import { useTheme } from '@/shared/lib/hooks/useTheme';
 import { PageLoader } from '@/widgets/PageLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { ToggleFeatures } from '@/shared/lib/features';
+import { MainLayout } from '@/shared/layouts/MainLayout';
+import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
+import { withTheme } from './providers/ThemeProvider/ui/withTheme';
+import { useAppToolbar } from './lib/useAppToolbar';
 
 function App() {
     const { theme } = useTheme();
     const dispatch = useAppDispatch();
     const inited = useSelector(getUserInited);
+    const toolbar = useAppToolbar();
 
     // инициализация пользователя
     useEffect(() => {
@@ -24,19 +30,70 @@ function App() {
         return <PageLoader />;
     }
 
+    if (!inited) {
+        return (
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <div
+                        id="app"
+                        className={classNames('app_redesigned', {}, [theme])}
+                    >
+                        <AppLoaderLayout />{' '}
+                    </div>
+                }
+                off={<PageLoader />}
+            />
+        );
+    }
+
     return (
-        <div className={classNames('app', {}, [theme])}>
-            <Suspense fallback="">
-                <Navbar />
-                <div className="content-page">
-                    <Sidebar />
-                    {/* Создаем app/provaiders/router/AppRouter */}
-                    {/* отрисовываем только после запроса на инициализацию пользователя */}
-                    {inited && <AppRouter />}
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            off={
+                <div id="app" className={classNames('app', {}, [theme])}>
+                    <Suspense fallback="">
+                        <Navbar />
+                        <div className="content-page">
+                            <Sidebar />
+                            <AppRouter />
+                        </div>
+                    </Suspense>
                 </div>
-            </Suspense>
-        </div>
+            }
+            on={
+                <div
+                    id="app"
+                    className={classNames('app_redesigned', {}, [theme])}
+                >
+                    <Suspense fallback="">
+                        <MainLayout
+                            header={<Navbar />}
+                            content={<AppRouter />}
+                            sidebar={<Sidebar />}
+                            toolbar={toolbar}
+                        />
+                    </Suspense>
+                </div>
+            }
+        />
     );
+
+    // return (
+    //     <div className={classNames('app', {}, [theme])}>
+    //         <Suspense fallback="">
+    //             <Navbar />
+    //             <div className="content-page">
+    //                 <Sidebar />
+    //                 {/* Создаем app/provaiders/router/AppRouter */}
+    //                 {/* отрисовываем только после запроса на инициализацию пользователя */}
+    //                 {inited && <AppRouter />}
+    //             </div>
+    //         </Suspense>
+    //     </div>
+    // );
 }
 
-export default App;
+export default withTheme(App);
+
+// export default App;
