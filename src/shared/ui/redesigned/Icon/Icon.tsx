@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Icon.module.scss';
 
+// 16_4 10min исключаем свойство onClick', чтобы самим его определять
 type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'onClick'>;
 
 interface IconBaseProps extends SvgProps {
@@ -9,10 +10,12 @@ interface IconBaseProps extends SvgProps {
     Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
 }
 
+// некликабельная, clickable необязательный
 interface NonClickableIconProps extends IconBaseProps {
     clickable?: false;
 }
 
+// кликабельная, clickable обязательный, дoбавляем onClick
 interface ClickableBaseProps extends IconBaseProps {
     clickable: true;
     onClick: () => void;
@@ -36,7 +39,7 @@ export const Icon = memo((props: IconProps) => {
             width={width}
             height={height}
             {...otherProps}
-            onClick={undefined}
+            onClick={undefined} // 16_4 18min
         />
     );
 
@@ -45,6 +48,7 @@ export const Icon = memo((props: IconProps) => {
             <button
                 type="button"
                 className={cls.button}
+                // 16_4 13min props.onClick
                 onClick={props.onClick}
                 style={{ height, width }}
             >

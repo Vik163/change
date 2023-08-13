@@ -9,7 +9,7 @@ interface AppLinkProps extends LinkProps {
     className?: string;
     variant?: AppLinkVariant;
     children?: ReactNode;
-    activeClassName?: string;
+    activeClassName?: string; // NavLink поддерживает состояние active 16_4 29:40min
 }
 
 export const AppLink = memo((props: AppLinkProps) => {
@@ -25,6 +25,7 @@ export const AppLink = memo((props: AppLinkProps) => {
     return (
         <NavLink
             to={to}
+            // NavLink поддерживает состояние active 16_4 29:40min
             className={({ isActive }) =>
                 classNames(cls.AppLink, { [activeClassName]: isActive }, [
                     className,

@@ -44,13 +44,5 @@
         rgba(94, 211, 243, 0) 99.97%
     );
     position: relative;
-
-    &::before {
-        content: '';
-        position: absolute;
-        width: 2px;
-        left: 0;
-        background: var(--accent-redesigned);
-        height: 100%;
-    }
+    border-left: 2px solid var(--accent-redesigned);
 }

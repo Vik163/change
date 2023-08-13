@@ -55,6 +55,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                     <VStack role="navigation" gap="8" className={cls.items}>
                         {itemsList}
                     </VStack>
+                    {/* сворачивание сайдбара */}
                     <Icon
                         data-testid="sidebar-toggle"
                         onClick={onToggle}
