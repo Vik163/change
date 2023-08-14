@@ -89,6 +89,7 @@ interface AvatarDropdownProps {
     className?: string;
 }
 
+// 16_5 6min
 export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
     const { className } = props;
     const { t } = useTranslation();
