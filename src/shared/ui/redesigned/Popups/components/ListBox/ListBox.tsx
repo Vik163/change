@@ -16,6 +16,7 @@ export interface ListBoxItem<T extends string> {
     disabled?: boolean;
 }
 
+// 16_6 22min <T extends string>
 interface ListBoxProps<T extends string> {
     items?: ListBoxItem<T>[];
     className?: string;

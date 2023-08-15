@@ -48,7 +48,7 @@ export function useInfiniteScroll({
     // }, [callback, triggerRef, wrapperRef]);
 
     useEffect(() => {
-        const wrapperElement = wrapperRef?.current;
+        const wrapperElement = wrapperRef?.current || null;
         const triggerElement = triggerRef.current;
 
         if (callback) {

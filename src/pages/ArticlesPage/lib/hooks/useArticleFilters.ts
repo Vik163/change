@@ -14,6 +14,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
+// 16_6 18min
 export function useArticleFilters() {
     const view = useSelector(getArticlesPageView);
     const sort = useSelector(getArticlesPageSort);

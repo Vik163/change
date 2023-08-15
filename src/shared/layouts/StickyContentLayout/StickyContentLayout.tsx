@@ -2,6 +2,7 @@ import { memo, ReactElement } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './StickyContentLayout.module.scss';
 
+// 16_6 3min
 interface StickyContentLayoutProps {
     className?: string;
     left?: ReactElement;
