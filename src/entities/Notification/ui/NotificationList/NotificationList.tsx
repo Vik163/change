@@ -1,10 +1,12 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { VStack } from '@/shared/ui/redesigned/Stack';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { useNotifications } from '../../api/notificationApi';
 import cls from './NotificationList.module.scss';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { toggleFeatures } from '@/shared/lib/features';
 
 // 12_1 19min
 interface NotificationListProps {
@@ -18,6 +20,12 @@ export const NotificationList = memo((props: NotificationListProps) => {
         // не используя при этом никаких специфических протоколов (типа WebSocket или Server Sent Events).
         // 12_1 27min поддерживается в rtkQuery
         pollingInterval: 10000,
+    });
+
+    const Skeleton = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => SkeletonRedesigned,
+        off: () => SkeletonDeprecated,
     });
 
     if (isLoading) {

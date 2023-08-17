@@ -6,6 +6,7 @@ interface UpdateFeatureFlagsOptions {
     features: Partial<FeatureFlags>;
 }
 
+// 16_12 7min
 const featureFlagsApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         updateFeatureFlags: build.mutation<void, UpdateFeatureFlagsOptions>({

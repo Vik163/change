@@ -9,6 +9,7 @@ interface UpdateFeatureFlagOptions {
     newFeatures: Partial<FeatureFlags>;
 }
 
+// 16_12 8min
 export const updateFeatureFlag = createAsyncThunk<
     void,
     UpdateFeatureFlagOptions,

@@ -10,6 +10,7 @@ import { HStack } from '@/shared/ui/redesigned/Stack';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 
+// 16_12 4min
 interface UiDesignSwitcherProps {
     className?: string;
 }

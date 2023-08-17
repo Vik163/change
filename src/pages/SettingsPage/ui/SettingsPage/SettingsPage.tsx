@@ -5,6 +5,7 @@ import { Page } from '@/widgets/Page';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 
+// 16_12
 interface SettingsPageProps {
     className?: string;
 }
