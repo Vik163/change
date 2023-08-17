@@ -45,8 +45,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     } = props;
     const { t } = useTranslation();
 
-    const isBig = view === ArticleView.BIG;
-
+    // const isBig = view === ArticleView.BIG;
     // const itemsPerRow = isBig ? 1 : 3;
     // const rowCount = isBig
     //     ? articles.length
