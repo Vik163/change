@@ -10,6 +10,8 @@ const recommendationsApi = rtkApi.injectEndpoints({
                 url: '/articles',
                 params: {
                     _limit: limit,
+                    // 16_11 8min выпадала ошибка: вместо user загружалась userId
+                    _expand: 'user',
                 },
             }),
         }),

@@ -10,6 +10,8 @@ import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import cls from './ArticleList.module.scss';
 import { Article } from '../../model/types/article';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
+import { ToggleFeatures } from '@/shared/lib/features';
+import { HStack } from '@/shared/ui/redesigned/Stack';
 
 // 8_3
 interface ArticleListProps {
@@ -45,10 +47,10 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
     const isBig = view === ArticleView.BIG;
 
-    const itemsPerRow = isBig ? 1 : 3;
-    const rowCount = isBig
-        ? articles.length
-        : Math.ceil(articles.length / itemsPerRow);
+    // const itemsPerRow = isBig ? 1 : 3;
+    // const rowCount = isBig
+    //     ? articles.length
+    //     : Math.ceil(articles.length / itemsPerRow);
 
     // const rowRender = ({
     //     index, isScrolling, key, style,
@@ -95,24 +97,49 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
     // 10_1
     return (
-        // <WindowScroller
-        //     scrollElement={document.getElementById(PAGE_ID) as Element}
-        // >
-        //     {({
-        //         height,
-        //         width,
-        //         registerChild,
-        //         onChildScroll,
-        //         isScrolling,
-        //         scrollTop,
-        //     }) => (
-        <div
-            // // @ts-ignore
-            //     ref={registerChild}
-            className={classNames(cls.ArticleList, {}, [className, cls[view]])}
-            data-testid="ArticleList"
-        >
-            {/* {virtualized
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            on={
+                <HStack
+                    wrap="wrap"
+                    gap="16"
+                    className={classNames(cls.ArticleListRedesigned, {}, [])}
+                    data-testid="ArticleList"
+                >
+                    {articles.map((item) => (
+                        <ArticleListItem
+                            article={item}
+                            view={view}
+                            target={target}
+                            key={item.id}
+                            className={cls.card}
+                        />
+                    ))}
+                    {isLoading && getSkeletons(view)}
+                </HStack>
+            }
+            off={
+                // <WindowScroller
+                //     scrollElement={document.getElementById(PAGE_ID) as Element}
+                // >
+                //     {({
+                //         height,
+                //         width,
+                //         registerChild,
+                //         onChildScroll,
+                //         isScrolling,
+                //         scrollTop,
+                //     }) => (
+                <div
+                    // // @ts-ignore
+                    //     ref={registerChild}
+                    className={classNames(cls.ArticleList, {}, [
+                        className,
+                        cls[view],
+                    ])}
+                    data-testid="ArticleList"
+                >
+                    {/* {virtualized
                         ? (
                             // @ts-ignore
                             <List
@@ -128,19 +155,20 @@ export const ArticleList = memo((props: ArticleListProps) => {
                             />
                         )
                         : ( */}
-            {articles.map((item) => (
-                <ArticleListItem
-                    article={item}
-                    view={view}
-                    target={target}
-                    key={item.id}
-                    className={cls.card}
-                />
-            ))}
-            {/* )} */}
-            {isLoading && getSkeletons(view)}
-        </div>
-        // </WindowScroller>
+                    {articles.map((item) => (
+                        <ArticleListItem
+                            article={item}
+                            view={view}
+                            target={target}
+                            key={item.id}
+                            className={cls.card}
+                        />
+                    ))}
+                    {isLoading && getSkeletons(view)}
+                </div>
+                // </WindowScroller>
+            }
+        />
     );
 
     //     <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>

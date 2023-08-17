@@ -36,7 +36,7 @@ export const CountrySelect = memo(
             items: options,
             onChange: onChangeHandler,
             readonly,
-            direction: 'top right' as const,
+            direction: 'top right' as const, // 16_8 8min
         };
 
         return (
