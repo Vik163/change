@@ -5,6 +5,7 @@ import cls from './ArticleDetails.module.scss';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
+// 16_15 1min
 export const renderArticleBlock = (block: ArticleBlock) => {
     switch (block.type) {
         case ArticleBlockType.CODE:

@@ -22,6 +22,7 @@ interface TextProps {
 
 type HeaderTagType = 'h1' | 'h2' | 'h3';
 
+// 16_15 7min cls.size
 const mapSizeToClass: Record<TextSize, string> = {
     s: cls.size_s,
     m: cls.size_m,

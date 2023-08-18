@@ -23,7 +23,6 @@ import {
 export const ArticleListItemRedesigned = memo((props: ArticleListItemProps) => {
     const { className, article, view, target } = props;
     const { t } = useTranslation();
-    console.log(article);
 
     const userInfo = (
         <>
