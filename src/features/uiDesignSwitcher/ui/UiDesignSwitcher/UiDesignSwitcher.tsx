@@ -47,7 +47,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
                 }),
             ).unwrap();
             setIsLoading(false);
-            forceUpdate();
+            forceUpdate(); // 16_18 (костыль) принудительное обновление интерфейса для изменений по featureFlag
         }
     };
 

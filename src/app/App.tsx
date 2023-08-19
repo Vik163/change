@@ -23,8 +23,11 @@ function App() {
 
     // инициализация пользователя
     useEffect(() => {
-        dispatch(initAuthData());
-    }, [dispatch]);
+        // 16_18 6min
+        if (!inited) {
+            dispatch(initAuthData());
+        }
+    }, [dispatch, inited]);
 
     if (!inited) {
         return <PageLoader />;
@@ -39,7 +42,7 @@ function App() {
                         id="app"
                         className={classNames('app_redesigned', {}, [theme])}
                     >
-                        <AppLoaderLayout />{' '}
+                        <AppLoaderLayout />
                     </div>
                 }
                 off={<PageLoader />}

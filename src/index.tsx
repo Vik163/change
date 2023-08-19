@@ -6,6 +6,7 @@ import App from './app/App';
 import '@/app/styles/index.scss';
 import './shared/config/i18n/i18n';
 import { ErrorBoundary } from './app/providers/ErrorBoundary';
+import { ForceUpdateProvider } from './shared/lib/render/forceUpdate';
 
 // 11_7 миграция на 18 react
 const container = document.getElementById('root');
@@ -23,9 +24,12 @@ root.render(
         {/* используется навигация */}
         <StoreProvider>
             <ErrorBoundary>
-                <ThemeProvider>
-                    <App />
-                </ThemeProvider>
+                {/* 16_18 (костыль) принудительное обновление интерфейса для изменений по featureFlag */}
+                <ForceUpdateProvider>
+                    <ThemeProvider>
+                        <App />
+                    </ThemeProvider>
+                </ForceUpdateProvider>
             </ErrorBoundary>
         </StoreProvider>
     </BrowserRouter>,

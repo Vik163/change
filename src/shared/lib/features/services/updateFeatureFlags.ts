@@ -17,6 +17,7 @@ export const updateFeatureFlag = createAsyncThunk<
 >('features/updateFeatureFlag', async ({ userId, newFeatures }, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
 
+    // 16_18 6min
     const allFeatures = {
         ...getAllFeatureFlags(),
         ...newFeatures,
@@ -31,6 +32,8 @@ export const updateFeatureFlag = createAsyncThunk<
         );
 
         setFeatureFlags(allFeatures);
+
+        // 16_18 (костыль) принудительное обновление интерфейса для изменений по featureFlag
         window.location.reload();
         return undefined;
     } catch (e) {

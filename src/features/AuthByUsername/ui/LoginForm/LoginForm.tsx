@@ -63,7 +63,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         const result = await dispatch(loginByUsername({ username, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
-            forceUpdate();
+            forceUpdate(); // 16_18 (костыль) принудительное обновление интерфейса для изменений по featureFlag
         }
     }, [onSuccess, dispatch, password, username, forceUpdate]);
 

@@ -18,7 +18,7 @@ interface SidebarProps {
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
     const [collapsed, setCollapsed] = useState(false);
-    const sidebarItemsList = useSidebarItems();
+    const sidebarItemsList = useSidebarItems(); // 16_18 8min
 
     const onToggle = () => {
         setCollapsed((prev) => !prev);

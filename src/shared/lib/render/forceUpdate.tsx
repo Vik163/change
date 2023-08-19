@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 
+// 16_18 (костыль) принудительное обновление интерфейса для изменений по featureFlag
 const ForceUpdateContext = createContext({
     value: true,
     forceUpdate: () => {},

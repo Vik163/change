@@ -21,6 +21,7 @@ import { toggleFeatures } from '@/shared/lib/features';
 
 // 8_2
 export const useSidebarItems = () => {
+    // 16_18 7min
     const userData = useSelector(getUserAuthData);
     const sidebarItemsList: SidebarItemType[] = [
         {

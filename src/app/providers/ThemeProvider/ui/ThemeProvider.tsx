@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 import { Theme } from '@/shared/const/theme';
 import { useJsonSettings } from '@/entities/User';
+import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
 
 // const defaultTheme =
 //     (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
@@ -31,6 +32,12 @@ const ThemeProvider = (props: ThemeProviderProps) => {
             setThemeInited(true);
         }
     }, [defaultTheme, isThemeInited]);
+
+    // 16_19
+    useEffect(() => {
+        document.body.className = theme;
+        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
+    }, [theme]);
 
     // используем useMemo, чтобы при рендере не создавать новый а возвращать старый объект
     // если из массива зависимостей ничего не изменилось
