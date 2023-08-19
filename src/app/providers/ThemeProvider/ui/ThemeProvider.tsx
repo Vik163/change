@@ -1,7 +1,6 @@
 import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 import { Theme } from '@/shared/const/theme';
-import { useJsonSettings } from '@/entities/User';
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
 
 // const defaultTheme =
@@ -12,26 +11,32 @@ interface ThemeProviderProps {
     children: ReactNode; // 11_7 3min
 }
 
+// 16_20 2min чтобы при перезагрузке не переключались темы
+const fallbackTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme;
+
 // создаем провайдер
 const ThemeProvider = (props: ThemeProviderProps) => {
     const { initialTheme, children } = props;
 
     // 15_5 20min и 15_6 7min получаем дефолтные настройки
-    const { theme: defaultTheme } = useJsonSettings();
+    // 16_22 почему отключили
+    // const { theme: defaultTheme } = useJsonSettings();
     const [isThemeInited, setThemeInited] = useState(false);
 
     // получаем тему из хранилища или light
     const [theme, setTheme] = useState<Theme>(
-        initialTheme || defaultTheme || Theme.LIGHT,
+        // initialTheme || defaultTheme || Theme.LIGHT,
+        initialTheme || fallbackTheme || Theme.LIGHT,
     );
 
     // 15_5 20min получаем дефолтные настройки
     useEffect(() => {
-        if (!isThemeInited && defaultTheme) {
-            setTheme(defaultTheme);
+        if (!isThemeInited && initialTheme) {
+            // setTheme(defaultTheme);
+            setTheme(initialTheme);
             setThemeInited(true);
         }
-    }, [defaultTheme, isThemeInited]);
+    }, [initialTheme, isThemeInited]);
 
     // 16_19
     useEffect(() => {

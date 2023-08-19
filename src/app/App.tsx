@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, memo, useEffect } from 'react';
 // Аналогично библиотеке classNames react --------------
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -15,7 +15,7 @@ import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
 import { withTheme } from './providers/ThemeProvider/ui/withTheme';
 import { useAppToolbar } from './lib/useAppToolbar';
 
-function App() {
+const App = memo(() => {
     const { theme } = useTheme();
     const dispatch = useAppDispatch();
     const inited = useSelector(getUserInited);
@@ -28,10 +28,6 @@ function App() {
             dispatch(initAuthData());
         }
     }, [dispatch, inited]);
-
-    if (!inited) {
-        return <PageLoader />;
-    }
 
     if (!inited) {
         return (
@@ -95,7 +91,7 @@ function App() {
     //         </Suspense>
     //     </div>
     // );
-}
+});
 
 export default withTheme(App);
 

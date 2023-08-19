@@ -59,13 +59,16 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                 value={value}
                 onChange={onChange}
             >
+                {/* Ошибка в консоле кнопка в кнопке 16_24  as={Button} */}
                 <HListBox.Button
                     as={Button}
                     variant="filled"
                     disabled={readonly}
                     addonRight={<Icon Svg={ArrowIcon} />}
                 >
+                    {/* <Button> */}
                     {selectedItem?.content ?? defaultValue}
+                    {/* </Button> */}
                 </HListBox.Button>
                 <HListBox.Options
                     className={classNames(cls.options, {}, optionsClasses)}

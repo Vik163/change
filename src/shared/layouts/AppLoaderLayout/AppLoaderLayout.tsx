@@ -4,6 +4,7 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { MainLayout } from '../MainLayout';
 import cls from './AppLoaderLayout.module.scss';
 
+// 16_20
 export const AppLoaderLayout = memo(() => {
     return (
         <MainLayout

@@ -4,6 +4,7 @@ import cls from './ScrollToolbar.module.scss';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { ScrollToTopButton } from '@/features/scrollToTopButton';
 
+// 16_21 3min
 interface ScrollToolbarProps {
     className?: string;
 }
