@@ -13,7 +13,10 @@ import { BuildOptions } from './types/config';
 //   plugins.push(new webpack.ReactRefreshWebpackPlugin())}
 
 export function buildPlugins({
-    paths, isDev, apiUrl, project,
+    paths,
+    isDev,
+    apiUrl,
+    project,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
     const isProd = !isDev; // 13_17 улучшаем сборку
 
@@ -48,25 +51,31 @@ export function buildPlugins({
     // CI (github actions) запускаются только при dev
     if (isDev) {
         plugins.push(new ReactRefreshWebpackPlugin());
+        // В новых версиях не нужен HotModuleReplacementPlugin если в devServere стоит hot: true,
         // если не работает HotModuleReplac., то React refresh plugin. видео 6_6
         plugins.push(new webpack.HotModuleReplacementPlugin()); // видео 2_6
-        plugins.push(new BundleAnalyzerPlugin({
-        // не открывается постоянно
-            openAnalyzer: false, // запуск по ссылке в терминале
-        })); // Анализирует размер бандла
+        plugins.push(
+            new BundleAnalyzerPlugin({
+                // не открывается постоянно
+                openAnalyzer: false, // запуск по ссылке в терминале
+            }),
+        ); // Анализирует размер бандла
     }
 
-    if (isProd) { // 13_17 улучшаем сборку
-        plugins.push(new MiniCssExtractPlugin({
-            filename: 'css/[name].[contenthash:8].css',
-            chunkFilename: 'css/[name].[contenthash:8].css',
-        }));
+    if (isProd) {
+        // 13_17 улучшаем сборку
+        plugins.push(
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].css',
+            }),
+        );
         // сборка переводов 9_6
-        plugins.push(new CopyPlugin({
-            patterns: [
-                { from: paths.locales, to: paths.buildLocales },
-            ],
-        }));
+        plugins.push(
+            new CopyPlugin({
+                patterns: [{ from: paths.locales, to: paths.buildLocales }],
+            }),
+        );
     }
 
     return plugins;

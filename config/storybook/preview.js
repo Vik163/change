@@ -16,7 +16,7 @@ export const parameters = {
         },
     },
     layout: 'fullscreen', // 13_11 3min убирает padding на экране
-    themes: { // подстовляет темы
+    themes: { // подставляет темы
         default: 'light',
         list: [
             { name: 'light', class: Theme.LIGHT, color: '#ffffff' },
